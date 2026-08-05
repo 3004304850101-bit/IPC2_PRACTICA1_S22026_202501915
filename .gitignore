@@ -1,0 +1,33 @@
+# Archivos compilados
+bin/
+obj/
+
+# Configuración de Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Archivos de Rider
+.idea/
+
+# Archivos de VS Code
+.vscode/
+
+# Paquetes
+packages/
+
+# Logs
+*.log
+
+# Archivos temporales
+*.tmp
+*.temp
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Configuración local
+appsettings.Development.json
