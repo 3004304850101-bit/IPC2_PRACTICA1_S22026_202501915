@@ -40,6 +40,7 @@ public abstract class Mascota
 
     public void MostrarInformacion()
     {
+        Console.WriteLine("**********************************");
         Console.WriteLine($"Nombre: {Nombre}");
         Console.WriteLine($"Edad: {Edad} años");
         Console.WriteLine($"Peso: {Peso} kg");
@@ -47,6 +48,7 @@ public abstract class Mascota
         Console.WriteLine($"Propietario: {Propietario}");
         Console.WriteLine($"ID: {Id}");
         Console.WriteLine($"Estado: {Estado}");
+        Console.WriteLine("**********************************");
     }
 }
     

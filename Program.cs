@@ -23,7 +23,7 @@ do
     switch (opcion)
     {
         case 1:
-           // Lógica para registrar una mascota
+            // Lógica para registrar una mascota
            Console.WriteLine("==================REGISTRAR MASCOTA==================");
            Console.WriteLine("Seleccione el tipo de mascota a registrar:");
            Console.WriteLine("[1] Perro");
@@ -51,6 +51,7 @@ do
                         Mascota mascotaPerro = nuevoPerro;
                         mascotas.Add(mascotaPerro);
                         Console.ReadKey();
+                        Console.Clear();
                         break;
                     case 2:
                         // Lógica para registrar un gato
@@ -76,6 +77,7 @@ do
                         mascotas.Add(mascotaGato);
                         Console.WriteLine($"Se ha registrado un nuevo gato con ID: {nuevoGato.Id}");
                         Console.ReadKey();
+                        Console.Clear();
                         break;
                     case 3:
                         // Lógica para registrar un ave
@@ -95,6 +97,7 @@ do
                         mascotas.Add(mascotaAve);
                         Console.WriteLine($"Se ha registrado un nuevo ave con ID: {nuevoAve.Id}");
                         Console.ReadKey();
+                        Console.Clear();
                         break;
                     case 4:
                         // Lógica para registrar una tortuga
@@ -120,14 +123,16 @@ do
                         mascotas.Add(mascotaTortuga);
                         Console.WriteLine($"Se ha registrado un nueva tortuga con ID: {nuevaTortuga.Id}");
                         Console.ReadKey();
+                        Console.Clear();
                         break;
                     default:
                         Console.WriteLine("Opción inválida. Por favor, seleccione una opción válida.");
                         Console.ReadKey();
+                        Console.Clear();
                         break;
                 }
             Console.Clear();
-            break;
+           break;
         case 2:
             // Lógica para gestionar mascotas
             Console.WriteLine("==================GESTIONAR MASCOTAS==================");
@@ -135,14 +140,101 @@ do
             {
                 Console.WriteLine("No hay mascotas registradas.");
                 Console.ReadKey();
+                Console.Clear();
                 break;
             }
+            Console.WriteLine("Seleccione una opción:");
+            Console.WriteLine("[1] Mostrar información de todas las mascotas");
+            Console.WriteLine("[2] Cambiar estado de una mascota");
+            Console.WriteLine("[3] Calcular dosis de una mascota");
+            Console.WriteLine("[4] Buscar mascota por ID");
+            Console.Write("Opción: ");
+            int opcionGestion;
+            int.TryParse(Console.ReadLine(), out opcionGestion);
+            Console.Clear();
+            switch(opcionGestion)
+            {
+                case 1:
+                    // Mostrar información de todas las mascotas
+                    foreach (var mascota in mascotas)
+                    {
+                        mascota.MostrarInformacion();
+
+                    }
+                    Console.ReadKey();
+                    Console.Clear();
+                    break;
+                case 2:
+                    // Cambiar estado de una mascota
+                    Console.WriteLine("Ingrese el ID de la mascota:");
+                    string idCambioEstado = Console.ReadLine() ?? "";
+                    Mascota? mascotaCambioEstado = mascotas.Find(m => m.Id == idCambioEstado);
+                    if (mascotaCambioEstado != null)
+                    {
+                        Console.WriteLine($"Estado actual: {mascotaCambioEstado.Estado}");
+                        Console.WriteLine("Ingrese el nuevo estado (enfermo[-]/sano[+]):");
+                        string nuevoEstado = Console.ReadLine() ?? "";
+                        mascotaCambioEstado.CambiarEstado(nuevoEstado);
+                        Console.WriteLine("Estado actualizado correctamente.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("No se encontró ninguna mascota con ese ID");
+                    }
+                    Console.ReadKey();
+                    Console.Clear();
+                    break;
+                case 3:
+                    // Calcular dosis de una mascota
+                    Console.WriteLine("Ingrese el ID de la mascota:");
+                    string idCalcularDosis = Console.ReadLine() ?? "";
+                    Mascota? mascotaCalcularDosis = mascotas.Find(m => m.Id == idCalcularDosis);
+                    if (mascotaCalcularDosis != null)
+                    {
+                        Console.WriteLine("Ingrese la dosis por kg:");
+                        double dosisKg;
+                        while (!double.TryParse(Console.ReadLine(), out dosisKg) || dosisKg < 0)
+                        {
+                            Console.WriteLine("Dosis inválida. Por favor, ingrese un número no negativo.");
+                            Console.WriteLine("Ingrese la dosis por kg:");
+                        }
+                        mascotaCalcularDosis.CalcularDosis(dosisKg);
+                    }
+                    else
+                    {
+                        Console.WriteLine("No se encontró ninguna mascota con ese ID");
+                    }
+                    Console.ReadKey();
+                    Console.Clear();
+                    break;
+                case 4:
+                    // Buscar mascota por ID
+                    Console.WriteLine("Ingrese el ID de la mascota:");
+                    string idBuscar = Console.ReadLine() ?? "";
+                    Mascota? mascotaBuscar = mascotas.Find(m => m.Id == idBuscar);
+                    if (mascotaBuscar != null)
+                    {
+                        mascotaBuscar.MostrarInformacion();
+                    }
+                    else
+                    {
+                        Console.WriteLine("No se encontró ninguna mascota con ese ID");
+                    }
+                    Console.ReadKey();
+                    Console.Clear();
+            break;
+            default:
+                    Console.WriteLine("Opción inválida. Por favor, seleccione una opción válida");
+                    break;
+            }
+            Console.Clear();
             break;
         case 3:
             Console.WriteLine("Saliendo del programa...");
             break;
         default:
-            Console.WriteLine("Opción inválida. Por favor, seleccione una opción válida.");
+            Console.WriteLine("Opción inválida. Por favor, seleccione una opción válida");
+            Console.Clear();
             break;
     }
 }while(opcion != 3);
@@ -157,14 +249,14 @@ do
         int edad;
         while (!int.TryParse(Console.ReadLine(), out edad) || edad < 0)
             {
-            Console.WriteLine("Edad inválida. Por favor, ingrese un número entero no negativo.");
+            Console.WriteLine("Edad inválida. Por favor, ingrese un número entero no negativo");
             Console.WriteLine("Ingrese la edad de la mascota:");
             }
             Console.WriteLine("Ingrese el peso de la mascota (en kg):");
                 double peso;
                 while (!double.TryParse(Console.ReadLine(), out peso) || peso < 0)
             {
-            Console.WriteLine("Peso inválido. Por favor, ingrese un número no negativo.");
+            Console.WriteLine("Peso inválido. Por favor, ingrese un número no negativo");
             Console.WriteLine("Ingrese el peso de la mascota (en kg):");
             }
             Console.WriteLine("Ingrese el sexo de la mascota (M/F):");
