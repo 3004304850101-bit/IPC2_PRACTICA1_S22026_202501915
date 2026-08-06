@@ -1,11 +1,11 @@
-public class Aves : Mascota
+public class Ave : Mascota
 {
     public string Especie { get; set; }
     public string Color { get; set; }
     public string Envergadura { get; set; }
     public bool Volar { get; set; }
 
-    public Aves(string nombre, int edad, double peso, string sexo, string propietario, string estado, string especie, string color, string envergadura, bool volar)
+    public Ave(string nombre, int edad, double peso, string sexo, string propietario, string estado, string especie, string color, string envergadura, bool volar)
         : base(nombre, edad, peso, sexo, propietario, estado)
     {
         Especie = especie;
